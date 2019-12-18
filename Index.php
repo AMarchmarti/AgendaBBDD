@@ -32,13 +32,13 @@
 						<td>
                         <div  class=' d-flex justify-content-around'>
 							<input type='submit' value='Save' name='save' class='btn btn-primary ' />
-							<input type='button' value='Delete' name="delete" class='btn btn-danger ' />
+							<input type='submit' value='Delete' name="delete" class='btn btn-danger ' />
                         </div>
 
 						</td>
                         <td>
                         <div  class=' d-flex justify-content-around'>
-							<input type='button' value='Update' name="update" class='btn btn-secondary' />
+							<input type='submit' value='Update' name="update" class='btn btn-secondary' />
 							<input type='submit' value='Show' name="show" class='btn btn-success' />
                             </div>
 						</td>
@@ -50,22 +50,22 @@
     require_once "./db/AgendaPDO.php";
 
     $DB = new Database();
-    $llamada = new AgendaPDO($DB->getConnection());
+    $diary = new AgendaPDO($DB->getConnection());
 
     if (isset($_POST['show']) && $_POST['show'] == 'Show'){
-        $llamada->showAllResults();
+        $diary->showAllResults();
     }
     
     if (isset($_POST['delete']) && $_POST['delete'] == 'Delete'){
-        $llamada->deleteData($_POST['phone']);
+        $diary->deleteData($_POST['phone']);
     }
     
     if (isset($_POST['save']) && $_POST['save'] == 'Save'){
-        $llamada->insertData($_POST['name'], $_POST['phone']);
+        $diary->insertData($_POST['name'], $_POST['phone']);
     }
     
     if (isset($_POST['update']) && $_POST['update'] == 'Update'){
-        $llamada->updateData($_POST['name'],$_POST['newName'], $_POST['phone']);
+        $diary->updateData($_POST['name'],$_POST['newName']);
     }
    
     

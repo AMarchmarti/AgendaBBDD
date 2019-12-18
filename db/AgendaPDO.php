@@ -85,20 +85,19 @@ class AgendaPDO{
     }
 
 
-    function updateData($name, $newName, $phone){
+    function updateData($name, $newName){
         try{
-            $query = "UPDATE diary SET name = :newName, surname = :surname, phone = :phone WHERE name = :name";
+            $query = "UPDATE agenda SET Nombre = :newName WHERE Nombre = :name";
 
             $stmt = $this->connection->prepare($query);
 
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':newName', $newName);
-            $stmt->bindParam(':phone', $phone);
 
             if ($stmt->execute()) {
-                echo "<div class='alert alert-primary' role='alert'>Los datos se han eliminado correctamente</div>";
+                echo "<div class='alert alert-primary' role='alert'>Los datos se han actualizado correctamente</div>";
             } else {
-                echo "<div class='alert alert-danger' role='alert'>Hemos tenido un problema en la eliminación de datos</div>";
+                echo "<div class='alert alert-danger' role='alert'>Hemos tenido un problema en la actulización de datos</div>";
             }
         }
         catch(PDOException $exception) {
